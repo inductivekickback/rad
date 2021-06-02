@@ -7,7 +7,7 @@ This driver automatically assigns PWM peripherals to each transmitter device in 
 
 Both receiver and transmitter devices in the DT only need to specify a pin and whether the pin is active high or low.
 
-Received pulses are measured using a pin-change interrupt. Whenever the receiver's pin becomes inactive a task is added to the System Workqueue and that task attempts to decode the current message using whatever libraries are enabled. The receiver driver's callback is then executed from the System Workqueue's thread. Here is an example of the receiver decoding a message, sending it to the application via the callback, and then having the transmitter reconstruct and send the message (i.e. it's not just an echo of what was received) -- with only 180us latency.
+Received pulses are measured using a pin-change interrupt. Whenever the receiver's pin becomes inactive a task is added to the System Workqueue and that task attempts to decode the current message using whatever message types are enabled. The receiver driver's callback is then executed from the System Workqueue's thread. Here is an example of the receiver decoding a message, sending it to the application via the callback, and then having the transmitter reconstruct and send the message (i.e. it's not just an echo of what was received) -- with only 180us latency.
 
 <p align="center"><img src="https://user-images.githubusercontent.com/6494431/120431571-88bd8b00-c32d-11eb-9712-9b41cf1d6e57.png" width="1024"></p>
 
