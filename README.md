@@ -1,4 +1,4 @@
-This project implements Zephyr RTOS receiver and transmitter drivers for laser tag blasters. It was built from the v1.5.0 tag of the [nRF Connect SDK (NCS)](https://github.com/nrfconnect/sdk-nrf).
+This project implements Zephyr RTOS receiver and transmitter drivers for laser tag blasters. It was built from the v1.5.0 tag of the [nRF Connect SDK (NCS)](https://github.com/nrfconnect/sdk-nrf) and should be compatible with most devices in Nordic's nRF52 series. It currently supports two popular toy blasters (Laser X and Dynasty/Lightbattle/Kidzlane/JOYMOR) as well as a native message type.
 
 ### About the driver
 The timing of laser blasters, especially toy ones, is pretty loose so *k_cycle_get_32* is usually good enough for decoding messages in the receiver. Nordic's [PWM peripheral](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fps_nrf52840%2Fpwm.html&cp=4_0_0_5_16) handles transmission with minimal CPU overhead.
