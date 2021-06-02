@@ -1,0 +1,76 @@
+# Rad transmitter driver
+#
+# Copyright (c) 2021 Daniel Veilleux
+#
+# SPDX-License-Identifier: LicenseRef-BSD-5-Clause-Nordic
+#
+
+menuconfig RAD_TX
+	bool "Rad laser tag transmitter driver"
+	select NRFX_PWM
+	select DYNAMIC_INTERRUPTS
+	help
+	  Enable Rad laser tag transmitter driver
+
+if RAD_TX
+
+config RAD_TX_DYNASTY
+	bool "Enable sending messages to Dynasty Toys blasters (probably also Lightbattle, Kidzlane, JOYMOR, etc.)"
+	select RAD_MSG_TYPE_DYNASTY
+	default y
+	help
+		Enable sending messages to Dynasty Toys blasters, a generic and now defunct brand
+
+config RAD_TX_LASER_X
+	bool "Enable sending messages to Laser X blasters"
+	select RAD_MSG_TYPE_LASER_X
+	default y
+	help
+		Enable sending messages to Laser X blasters
+
+config RAD_TX_RAD
+	bool "Enable sending messages to Rad blasters"
+	select RAD_MSG_TYPE_RAD
+	default y
+	help
+		Enable sending messages to Rad blasters
+
+config RAD_TX_INIT_PRIORITY
+	int "Rad laser tag transmitter init priority"
+	default 90
+	help
+	  Rad laser tag transmitter init priority
+
+config RAD_TX_ALLOW_PWM0
+	bool "Allow PWM0"
+	default y
+    select NRFX_PWM0
+	help
+		Allow the driver to use PWM peripheral instance 0
+
+config RAD_TX_ALLOW_PWM1
+	bool "Allow PWM1"
+	default y
+    select NRFX_PWM1
+	help
+		Allow the driver to use PWM peripheral instance 1
+
+config RAD_TX_ALLOW_PWM2
+	bool "Allow PWM2"
+	default y
+    select NRFX_PWM2
+	help
+		Allow the driver to use PWM peripheral instance 2
+
+config RAD_TX_ALLOW_PWM3
+	bool "Allow PWM3"
+	default y
+    select NRFX_PWM3
+	help
+		Allow the driver to use PWM peripheral instance 3
+
+module = RAD_TX
+module-str = RAD_TX
+source "${ZEPHYR_BASE}/subsys/logging/Kconfig.template.log_config"
+
+endif #RAD_TX

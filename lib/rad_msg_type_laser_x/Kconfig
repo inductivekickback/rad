@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2021 Daniel Veilleux
+#
+# SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+#
+
+menuconfig RAD_MSG_TYPE_LASER_X
+	bool "Rad implementation for working with Laser X messages"
+
+if RAD_MSG_TYPE_LASER_X
+
+module = RAD_MSG_TYPE_LASER_X
+module-str = RAD_MSG_TYPE_LASER_X
+source "${ZEPHYR_BASE}/subsys/logging/Kconfig.template.log_config"
+
+endif # RAD_MSG_TYPE_LASER_X

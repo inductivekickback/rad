@@ -1,0 +1,47 @@
+# Rad receiver driver
+#
+# Copyright (c) 2021 Daniel Veilleux
+#
+# SPDX-License-Identifier: LicenseRef-BSD-5-Clause-Nordic
+#
+
+menuconfig RAD_RX
+	bool "Rad laser tag receiver driver"
+	select GPIO
+	help
+	  Enable Rad laser tag receiver driver
+
+if RAD_RX
+
+config RAD_RX_ACCEPT_DYNASTY
+	bool "Accept messages from Dynasty Toys blasters (probably also Lightbattle, Kidzlane, JOYMOR, etc.)"
+	select RAD_MSG_TYPE_DYNASTY
+	default y
+	help
+		Accept messages from Dynasty Toys blasters, a generic and now defunct brand
+
+config RAD_RX_ACCEPT_LASER_X
+	bool "Accept messages from Laser X blasters"
+	select RAD_MSG_TYPE_LASER_X
+	default y
+	help
+		Accept messages from Laser X blasters
+
+config RAD_RX_ACCEPT_RAD
+	bool "Accept messages from Rad blasters"
+	select RAD_MSG_TYPE_RAD
+	default y
+	help
+		Accept messages from Rad blasters
+
+config RAD_RX_INIT_PRIORITY
+	int "Rad laser tag receiver init priority"
+	default 90
+	help
+	  Rad laser tag receiver init priority
+
+module = RAD_RX
+module-str = RAD_RX
+source "${ZEPHYR_BASE}/subsys/logging/Kconfig.template.log_config"
+
+endif #RAD_RX
