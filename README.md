@@ -28,6 +28,7 @@ typedef struct
 ...
 int rad_tx_laser_x_blast(const struct device *dev, rad_msg_laser_x_t *msg);
 ```
+#### Dynasty
 The "Dynasty" blasters have a team ID as well as a weapon type. Two of the weapon types, shotgun and SMG, share the same IR code but differ in their sound effects. These messages also contain a third field that appears to be some kind of checksum (which is handled automatically by the driver and doesn't need to be supplied when transmitting):
 ```
 typedef enum
@@ -54,6 +55,7 @@ typedef struct
 ...
 int rad_tx_dynasty_blast(const struct device *dev, rad_msg_dynasty_t *msg);
 ```
+#### Rad
 A native message type is also defined that provides more flexibility:
 ```
 typedef struct
