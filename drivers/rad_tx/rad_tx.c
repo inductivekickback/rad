@@ -73,7 +73,7 @@ struct rad_tx_data {
     struct k_sem            sem;
     nrf_pwm_values_common_t values[RAD_TX_MSG_MAX_LEN_PWM_VALUES];
     uint32_t                len;
-	bool                    ready;
+    bool                    ready;
 };
 
 struct rad_tx_cfg {
