@@ -11,6 +11,69 @@ Received pulses are measured using a pin-change interrupt. Whenever the receiver
 
 <p align="center"><img src="https://user-images.githubusercontent.com/6494431/120431571-88bd8b00-c32d-11eb-9712-9b41cf1d6e57.png" width="1024"></p>
 
+#### Laser X
+The Laser X blasters that I purchased transmit messages that contain only team IDs:
+```
+typedef enum
+{
+	TEAM_ID_LASER_X_BLUE    = 0x51,
+	TEAM_ID_LASER_X_RED     = 0x52,
+	TEAM_ID_LASER_X_NEUTRAL = 0x53
+} team_id_laser_x_t;
+
+typedef struct
+{
+	uint8_t team_id;
+} rad_msg_laser_x_t;
+
+...
+
+int rad_tx_laser_x_blast(const struct device *dev, rad_msg_laser_x_t *msg);
+```
+The "Dynasty" blasters have a team ID as well as a weapon type. Two of the weapon types, shotgun and SMG, share the same IR code but differ in their sound effects. These messages also contain a third field that appears to be some kind of checksum (which is handled automatically by the driver and doesn't need to be supplied when transmitting):
+```
+typedef enum
+{
+	TEAM_ID_DYNASTY_BLUE  = 1,
+	TEAM_ID_DYNASTY_RED   = 2,
+	TEAM_ID_DYNASTY_GREEN = 3,
+    TEAM_ID_DYNASTY_WHITE = 4
+} team_id_dynasty_t;
+
+typedef enum
+{
+	WEAPON_ID_DYNASTY_PISTOL      = 1,
+	WEAPON_ID_DYNASTY_SHOTGUN_SMG = 2,
+	WEAPON_ID_DYNASTY_ROCKET      = 3
+} weapon_id_dynasty_t;
+
+typedef struct
+{
+	uint8_t team_id;
+	uint8_t weapon_id;
+	uint8_t checksum;
+} rad_msg_dynasty_t;
+
+...
+
+int rad_tx_dynasty_blast(const struct device *dev, rad_msg_dynasty_t *msg);
+```
+A native message type is also defined that provides more flexibility:
+```
+typedef struct
+{
+	uint8_t damage		: 4;
+	uint8_t special 	: 4;
+	uint8_t player_id	: 4;
+	uint8_t team_id		: 2;
+	uint8_t reserved	: 2;
+} rad_msg_rad_t;
+
+...
+
+int rad_tx_rad_blast(const struct device *dev, rad_msg_rad_t *msg);
+```
+
 ### Using the driver
 This is an example DT entry in the project's local overlay (e.g. "nrf52840dk_nrf52840.overlay"):
 ```
