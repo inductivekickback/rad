@@ -109,10 +109,11 @@ int ret = rad_rx_set_callback(rx_dev, rad_rx_cb);
 ```
 The transmitter can send messages for a particular blaster type:
 ```
-rad_msg_laser_x_t laser_x_msg = {
-  .team_id = TEAM_ID_LASER_X_RED
+rad_msg_dynasty_t dynasty_msg = {
+  .team_id   = TEAM_ID_DYNASTY_GREEN,
+  .weapon_id = WEAPON_ID_DYNASTY_ROCKET
 };
-int ret = rad_tx_laser_x_blast(tx_dev, &laser_x_msg);
+int ret = rad_tx_dynasty_blast(tx_dev, &dynasty_msg);
 ```
 After a message has been sent it can be sent again with very little CPU overhead:
 ```
