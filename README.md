@@ -103,6 +103,33 @@ CONFIG_RAD_RX_ACCEPT_DYNASTY=y
 ```
 A callback for the receiver needs to be registered at runtime:
 ```
+void rad_rx_cb(rad_msg_type_t msg_type, void *data)
+{
+    switch (msg_type) {
+    case RAD_MSG_TYPE_LASER_X:
+        {
+            rad_msg_laser_x_t *msg = (rad_msg_laser_x_t*)data;
+            ...
+        }
+        break;
+    case RAD_MSG_TYPE_DYNASTY:
+        {
+            rad_msg_dynasty_t *msg = (rad_msg_dynasty_t*)data;
+            ...
+        }
+        break;
+    case RAD_MSG_TYPE_RAD:
+        {
+            rad_msg_rad_t *msg = (rad_msg_rad_t*)data;
+            ...
+        }
+        break;
+    default:
+        LOG_INF("Unhandled Rad message type (%d).", msg_type);
+        break;
+    }
+}
+...
 const struct device *rx_dev = device_get_binding("rad_rx0");
 ...
 int ret = rad_rx_set_callback(rx_dev, rad_rx_cb);
