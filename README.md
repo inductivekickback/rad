@@ -144,7 +144,7 @@ rad_msg_dynasty_t dynasty_msg = {
 };
 int ret = rad_tx_dynasty_blast(tx_dev, &dynasty_msg);
 ```
-After a message has been sent it can be sent again with very little CPU overhead:
+The message that was sent most recently can be sent again with very little CPU overhead:
 ```
 int ret = rad_tx_blast_again(tx_dev);
 ```
