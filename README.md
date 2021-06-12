@@ -7,7 +7,7 @@ This driver automatically assigns PWM peripherals to each transmitter device in 
 
 Both receiver and transmitter devices in the DT only need to specify a pin and whether the pin is active high or low.
 
-Received pulses are measured using a pin-change interrupt. Whenever the receiver's pin becomes inactive a task is added to the System Workqueue and that task attempts to decode the current message using whatever message types are enabled. When a message is successfuly decoded the receiver driver's callback is executed from the System Workqueue's thread. Here is an example of the receiver decoding a ("dynasty") message, sending it to the application via the callback, and then having the transmitter reconstruct and send the message (i.e. it's not just an echo of what was received) -- with only 180us latency.
+Received pulses are measured using a pin-change interrupt. Whenever the receiver's pin becomes inactive a task is added to the System Workqueue and that task attempts to decode the current message using whatever message types are enabled. When a message is successfuly decoded the receiver driver's callback is executed from the System Workqueue's thread. Here is an example of the receiver driver decoding a ("dynasty") message, sending it to the application via the callback, and then having the transmitter driver reconstruct and send the message (i.e. it's not just an echo of what was received) -- with only 180us latency.
 
 <p align="center"><img src="https://user-images.githubusercontent.com/6494431/120431571-88bd8b00-c32d-11eb-9712-9b41cf1d6e57.png" width="1024"></p>
 
@@ -29,7 +29,7 @@ typedef struct
 int rad_tx_laser_x_blast(const struct device *dev, rad_msg_laser_x_t *msg);
 ```
 #### Dynasty
-The "Dynasty" blasters have a team ID as well as a weapon type. Two of the weapon types, shotgun and SMG, share the same IR code but differ in their sound effects. These messages also contain a third field that appears to be some kind of checksum (which is handled automatically by the driver and doesn't need to be supplied when transmitting):
+My "Dynasty" blasters have a team ID as well as a weapon type. Two of the weapon types, shotgun and SMG, share the same IR code but differ in their sound effects. These messages also contain a third field that appears to be some kind of checksum (which is handled automatically by the driver and doesn't need to be supplied when transmitting):
 ```
 typedef enum
 {
