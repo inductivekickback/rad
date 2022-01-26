@@ -1,0 +1,12 @@
+sample:
+  name: RAD demo
+  description: Demonstrates basic RAD transmitter and receiver operation
+common:
+  tags: rad
+  platform_allow: nrf52840dk_nrf52840
+tests:
+  samples.rad.rx:
+    build_only: true
+  samples.rad.tx:
+    build_only: true
+    filter: CONFIG_NRFX_PWM

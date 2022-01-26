@@ -119,7 +119,7 @@ void main(void)
             .special   = 9,
             .player_id = 4,
             .team_id   = 3,
-            .reserved  = 0
+            .version   = RAD_MSG_VERSION
         };
         ret = rad_tx_rad_blast(tx_dev, &rad_msg);
         if (ret) {

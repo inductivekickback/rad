@@ -32,7 +32,7 @@ rad_parse_state_t rad_msg_type_rad_parse(uint32_t      *message,
      */
 	int i=1;
 
-	msg->reserved = 0;
+	msg->version = 0;
 	for (int j=1; j>=0; i+=2,j--) {
 	    if (!IS_VALID_BIT_PULSE(message[i+1], RAD_MSG_TYPE_RAD_ACTIVE_PULSE_LEN_US)) {
 	    	return RAD_PARSE_STATE_INVALID;
@@ -41,11 +41,15 @@ rad_parse_state_t rad_msg_type_rad_parse(uint32_t      *message,
             // This is a zero bit.
         } else if (IS_VALID_BIT_PULSE(message[i], RAD_MSG_TYPE_RAD_1_PULSE_LEN_US)) {
             // This is a one bit.
-            msg->reserved |= (1<<j);
+            msg->version |= (1<<j);
         } else {
         	return RAD_PARSE_STATE_INVALID;
         }
 	}
+
+    if (RAD_MSG_VERSION != msg->version) {
+        return RAD_PARSE_STATE_INVALID;
+    }
 
 	msg->team_id = 0;
 	for (int j=1; j>=0; i+=2,j--) {
@@ -135,12 +139,22 @@ for (int i=0; i < RAD_TX_RAD_ACTIVE_PULSE_LEN_PWM_VALUES; i++) { \
 } \
 } while (0)
 
-int rad_msg_type_rad_encode(rad_msg_rad_t *msg, nrf_pwm_values_common_t *values, uint32_t *len)
+int rad_msg_type_rad_encode(const rad_msg_rad_t *msg,
+                              nrf_pwm_values_common_t *values,
+                              uint32_t *len)
 {
     nrf_pwm_values_common_t *p_values = values;
 
     if (*len < RAD_TX_RAD_MAX_MSG_LEN_PWM_VALUES) {
         return -ENOMEM;
+    }
+
+    /**
+     * Only one version of RAD message is defined/supported.
+     * Creating a message without a version is allowed.
+     */
+    if (msg->version && (RAD_MSG_VERSION != msg->version)) {
+        return -1;
     }
 
     for (int i=0; i < RAD_TX_RAD_START_PULSE_LEN_PWM_VALUES; i++) {
@@ -149,7 +163,7 @@ int rad_msg_type_rad_encode(rad_msg_rad_t *msg, nrf_pwm_values_common_t *values,
     }
 
     for (int j=1; j>=0; j--) {
-        if (msg->reserved & (1<<j)) {
+        if (RAD_MSG_VERSION & (1<<j)) {
             ADD_1_BIT(p_values);
         } else {
             ADD_0_BIT(p_values);

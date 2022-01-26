@@ -68,13 +68,15 @@ typedef enum
 } rad_msg_type_t;
 
 #if CONFIG_RAD_MSG_TYPE_RAD
+#define RAD_MSG_VERSION 1
+
 typedef struct
 {
 	uint8_t damage		: 4;
 	uint8_t special 	: 4;
 	uint8_t player_id	: 4;
 	uint8_t team_id		: 2;
-	uint8_t reserved	: 2;
+	uint8_t version 	: 2;
 } rad_msg_rad_t;
 #endif /* #if CONFIG_RAD_MSG_TYPE_RAD */
 

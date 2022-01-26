@@ -111,7 +111,7 @@ static void tx(nrfx_pwm_t *pwm_inst, const nrf_pwm_values_common_t *values, uint
 }
 
 #if CONFIG_RAD_TX_RAD
-static int dmv_rad_tx_rad_blast(const struct device *dev, rad_msg_rad_t *msg)
+static int dmv_rad_tx_rad_blast(const struct device *dev, const rad_msg_rad_t *msg)
 {
     const struct rad_tx_cfg *p_cfg  = dev->config;
     struct rad_tx_data      *p_data = dev->data;
@@ -138,7 +138,7 @@ static int dmv_rad_tx_rad_blast(const struct device *dev, rad_msg_rad_t *msg)
 #endif /* CONFIG_RAD_TX_RAD */
 
 #if CONFIG_RAD_TX_LASER_X
-static int dmv_rad_tx_laser_x_blast(const struct device *dev, rad_msg_laser_x_t *msg)
+static int dmv_rad_tx_laser_x_blast(const struct device *dev, const rad_msg_laser_x_t *msg)
 {
     const struct rad_tx_cfg *p_cfg  = dev->config;
     struct rad_tx_data      *p_data = dev->data;
@@ -165,7 +165,7 @@ static int dmv_rad_tx_laser_x_blast(const struct device *dev, rad_msg_laser_x_t 
 #endif /* CONFIG_RAD_TX_LASER_X */
 
 #if CONFIG_RAD_TX_DYNASTY
-static int dmv_rad_tx_dynasty_blast(const struct device *dev, rad_msg_dynasty_t *msg)
+static int dmv_rad_tx_dynasty_blast(const struct device *dev, const rad_msg_dynasty_t *msg)
 {
     const struct rad_tx_cfg *p_cfg  = dev->config;
     struct rad_tx_data      *p_data = dev->data;

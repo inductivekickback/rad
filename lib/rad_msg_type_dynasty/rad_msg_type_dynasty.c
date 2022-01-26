@@ -147,7 +147,7 @@ for (int i=0; i < RAD_TX_DYNASTY_1_PULSE_LEN_PWM_VALUES; i++) { \
 } \
 } while (0)
 
-int rad_msg_type_dynasty_encode(rad_msg_dynasty_t *msg,
+int rad_msg_type_dynasty_encode(const rad_msg_dynasty_t *msg,
                                   nrf_pwm_values_common_t *values,
                                   uint32_t *len)
 {
