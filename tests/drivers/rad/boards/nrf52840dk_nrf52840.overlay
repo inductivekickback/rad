@@ -1,0 +1,16 @@
+/ {
+	rad {
+		rad_rx0: dmv-rad-rx0 {
+			compatible = "dmv,rad-rx";
+			status = "okay";
+			gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
+			label = "rad_rx0";
+		};
+		rad_tx0: dmv-rad-tx0 {
+			compatible = "dmv,rad-tx";
+			status = "okay";
+			gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
+			label = "rad_tx0";
+		};
+	};
+};
