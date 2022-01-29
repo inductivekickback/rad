@@ -3,10 +3,8 @@ common:
   platform_allow: nrf52840dk_nrf52840
 tests:
   rad.loopback:
-    slow: True
+    slow: true
     timeout: 400
-    filter: CONFIG_HAS_NRFX
     tags: drivers rad
-    harness: ztest
     harness_config:
       fixture: rad_fixture
