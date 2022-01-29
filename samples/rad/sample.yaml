@@ -9,4 +9,3 @@ tests:
     build_only: true
   samples.rad.tx:
     build_only: true
-    filter: CONFIG_NRFX_PWM
