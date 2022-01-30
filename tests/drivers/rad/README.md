@@ -22,5 +22,5 @@ Ensure that the IR LED can be controlled via P0.04 (GPIO_ACTIVE_HIGH) and the re
 
 Then execute the test:
 ```
-zephyr/scripts/twister -T nrf/tests/drivers/rad/ --device-testing --hardware-map map.yaml -p nrf52840dk_nrf52840
+zephyr/scripts/twister -T nrf/tests/drivers/rad/ --device-testing --hardware-map map.yaml
 ```
