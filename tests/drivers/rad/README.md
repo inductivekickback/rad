@@ -24,3 +24,26 @@ Then execute the test:
 ```
 zephyr/scripts/twister -T nrf/tests/drivers/rad/ --device-testing --hardware-map map.yaml
 ```
+The output should look something like this:
+```
+DEBUG   - DEVICE: *** Booting Zephyr OS build v2.7.0-ncs1  ***
+DEBUG   - DEVICE: Running test suite test_rad
+DEBUG   - DEVICE: ===================================================================
+DEBUG   - DEVICE: START - test_get_binding
+DEBUG   - DEVICE: PASS - test_get_binding in 0.1 seconds
+DEBUG   - DEVICE: ===================================================================
+DEBUG   - DEVICE: START - test_laser_x_loopback
+DEBUG   - DEVICE: PASS - test_laser_x_loopback in 0.114 seconds
+DEBUG   - DEVICE: ===================================================================
+DEBUG   - DEVICE: START - test_dynasty_loopback
+DEBUG   - DEVICE: PASS - test_dynasty_loopback in 0.530 seconds
+DEBUG   - DEVICE: ===================================================================
+DEBUG   - DEVICE: START - test_rad_loopback
+DEBUG   - DEVICE: PASS - test_rad_loopback in 381.574 seconds
+DEBUG   - DEVICE: ===================================================================
+DEBUG   - DEVICE: Test suite test_rad succeeded
+DEBUG   - DEVICE: ===================================================================
+DEBUG   - DEVICE: PROJECT EXECUTION SUCCESSFUL
+DEBUG   - run status: nrf52840dk_nrf52840/rad.loopback passed
+INFO    - 1/1 nrf52840dk_nrf52840       rad.loopback                                       PASSED (device 389.353s)
+```
