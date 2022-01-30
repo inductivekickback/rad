@@ -24,7 +24,7 @@ Then execute the test:
 ```
 zephyr/scripts/twister -T nrf/tests/drivers/rad/ --device-testing --hardware-map map.yaml
 ```
-The output should look something like this:
+The output should include something like this:
 ```
 DEBUG   - DEVICE: *** Booting Zephyr OS build v2.7.0-ncs1  ***
 DEBUG   - DEVICE: Running test suite test_rad
