@@ -2,7 +2,7 @@ common:
   tags: rad
   platform_allow: nrf52840dk_nrf52840
 tests:
-  rad.loopback:
+  drivers.rad.loopback:
     slow: true
     timeout: 400
     tags: drivers rad
